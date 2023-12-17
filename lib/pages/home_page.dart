@@ -28,7 +28,10 @@ class _HomePageState extends State<HomePage> {
         );
       }),
       floatingActionButton: FloatingActionButton.small(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const ContactDetail()));
+        },
         child: Icon(Icons.add),
       ),
     );

@@ -1,3 +1,3 @@
 #Contakt
 
-An application for study only
+A contact manager for study purposes only

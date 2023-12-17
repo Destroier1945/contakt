@@ -19,12 +19,15 @@ class _ContactDetailState extends State<ContactDetail> {
           child: Column(
             children: [
               Center(
-                child: Icon(
-                  Icons.contact_page,
-                  size: 128,
+                child: Image.network(
+                  'https://randomuser.me/api/portraits/men/42.jpg',
                 ),
               ),
+              SizedBox(
+                height: 8,
+              ),
               TextField(
+                keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Name'),
               ),
@@ -32,6 +35,7 @@ class _ContactDetailState extends State<ContactDetail> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Email'),
               ),
@@ -39,8 +43,16 @@ class _ContactDetailState extends State<ContactDetail> {
                 height: 8,
               ),
               TextField(
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Phone'),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Save'),
               ),
             ],
           ),

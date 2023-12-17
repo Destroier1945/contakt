@@ -11,8 +11,8 @@ class _ContactWidgetState extends State<ContactWidget> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.person),
-      trailing: Icon(Icons.contact_page),
+      leading: Image.network("https://randomuser.me/api/portraits/men/42.jpg"),
+      trailing: Icon(Icons.call_missed_outgoing),
       title: Text("Nome"),
       subtitle: Text("telefone"),
     );
