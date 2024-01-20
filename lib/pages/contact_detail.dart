@@ -1,53 +1,76 @@
+import 'package:contakt/model/contact_model.dart';
 import 'package:flutter/material.dart';
 
 class ContactDetail extends StatefulWidget {
-  const ContactDetail({super.key});
+  final Contact selectedContact;
+
+  const ContactDetail(
+      {super.key, required Contact contact, required this.selectedContact});
 
   @override
   State<ContactDetail> createState() => _ContactDetailState();
 }
 
 class _ContactDetailState extends State<ContactDetail> {
+  final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _phoneController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController.text = widget.selectedContact.name;
+    _emailController.text = widget.selectedContact.email;
+    _phoneController.text = widget.selectedContact.phoneNumber;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Contact Detail"),
+          title: const Text("Contact Detail"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Center(
-                child: Image.network(
-                  'https://randomuser.me/api/portraits/men/42.jpg',
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    widget.selectedContact.avatar,
+                  ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               TextField(
+                controller: _nameController,
                 keyboardType: TextInputType.name,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Name'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               TextField(
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Email'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               TextField(
+                controller: _phoneController,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), hintText: 'Phone'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               ElevatedButton(

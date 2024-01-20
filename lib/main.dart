@@ -1,5 +1,7 @@
+import 'package:contakt/pages/splashscreen.dart';
 import 'package:flutter/material.dart';
 
+// ignore: unused_import
 import 'pages/home_page.dart';
 
 void main() {
@@ -11,10 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
+    return const MaterialApp(
+      home: SplasshScreen(),
     );
-
-    throw UnimplementedError();
   }
 }
