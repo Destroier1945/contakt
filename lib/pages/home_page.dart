@@ -30,63 +30,20 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => ContactDetail(
                               selectedContact: contact,
-                              contact: contact,
                             ))),
               ),
             );
           }),
       floatingActionButton: FloatingActionButton.small(
         onPressed: () {
-          _showCreateContact(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ContactDetail(selectedContact: Contact("", "", "", ""))));
         },
         child: const Icon(Icons.add),
       ),
     );
   }
-}
-
-void _showCreateContact(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return ListView(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  'New Kontakt',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Name', border: OutlineInputBorder()),
-                ),
-                const SizedBox(height: 8),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Email', border: OutlineInputBorder()),
-                ),
-                const SizedBox(height: 8),
-                TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Phone', border: OutlineInputBorder()),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Save"),
-                ),
-              ],
-            ),
-          ),
-        ],
-      );
-    },
-  );
 }

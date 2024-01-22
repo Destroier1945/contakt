@@ -2,10 +2,9 @@ import 'package:contakt/model/contact_model.dart';
 import 'package:flutter/material.dart';
 
 class ContactDetail extends StatefulWidget {
-  final Contact selectedContact;
+  final Contact? selectedContact;
 
-  const ContactDetail(
-      {super.key, required Contact contact, required this.selectedContact});
+  const ContactDetail({super.key, this.selectedContact});
 
   @override
   State<ContactDetail> createState() => _ContactDetailState();
@@ -21,9 +20,9 @@ class _ContactDetailState extends State<ContactDetail> {
   @override
   void initState() {
     super.initState();
-    _nameController.text = widget.selectedContact.name;
-    _emailController.text = widget.selectedContact.email;
-    _phoneController.text = widget.selectedContact.phoneNumber;
+    _nameController.text = widget.selectedContact?.name ?? "";
+    _emailController.text = widget.selectedContact?.email ?? "";
+    _phoneController.text = widget.selectedContact?.phoneNumber ?? "";
   }
 
   @override
@@ -36,13 +35,19 @@ class _ContactDetailState extends State<ContactDetail> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Center(
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    widget.selectedContact.avatar,
-                  ),
+              if (widget.selectedContact == null ||
+                  widget.selectedContact!.avatar.isEmpty)
+                const Icon(
+                  Icons.person,
+                  size: 68,
+                )
+              else
+                Center(
+                  child: CircleAvatar(
+                      radius: 60,
+                      backgroundImage:
+                          NetworkImage(widget.selectedContact!.avatar)),
                 ),
-              ),
               const SizedBox(
                 height: 8,
               ),
