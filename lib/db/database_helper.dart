@@ -1,30 +1,9 @@
 import 'package:contakt/model/contact_model.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DataBaseHelper {
   static final DataBaseHelper _instance = DataBaseHelper();
   factory DataBaseHelper() => _instance;
-
-  final CollectionReference contactCollection =
-      FirebaseFirestore.instance.collection('contact');
-
-  Future<void> saveContactFromFirebase() async {
-    try {
-      QuerySnapshot<Object?> querySnapshot = await contactCollection.get();
-
-      List<Contact> contactsFromFirebase = querySnapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        return Contact(
-            data['name'], data['email'], data['phoneNumber'], data['avatar']);
-      }).toList();
-      for (Contact contact in contactsFromFirebase) {
-        await saveContact(contact);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
 
   static Database? _db;
 

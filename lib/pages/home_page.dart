@@ -3,8 +3,8 @@ import 'package:contakt/pages/contact_detail.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Contact> contacts;
-  const HomePage({super.key, required this.contacts});
+  List<Contact>? contacts;
+  HomePage({super.key, this.contacts});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +12,9 @@ class HomePage extends StatelessWidget {
       // ignore: prefer_const_constructors
       appBar: AppBar(title: Text("Kontakte"), centerTitle: true),
       body: ListView.builder(
-          itemCount: contacts.length,
+          itemCount: contacts?.length,
           itemBuilder: (context, index) {
-            Contact contact = contacts[index];
+            Contact contact = contacts![index];
             return Card(
               child: GestureDetector(
                 child: ListTile(
